@@ -10,6 +10,7 @@ import Login from '@/components/login/Login'
 import Signup from '@/components/login/Signup'
 import Detail from '@/components/detail/bookDetail'
 import UserList from '@/components/Admin/UserList'
+import AddNewBook from '@/components/Admin/AddNewBook'
 
 Vue.use(Router)
 
@@ -62,5 +63,10 @@ export default new Router({
       name: 'UserList',
       component: UserList
     },
+    {
+      path:'/admin/AddNewBook',
+      name:'AddNewBook',
+      component: AddNewBook
+    }
   ]
 })
