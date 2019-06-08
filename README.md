@@ -1,4 +1,7 @@
-# e-book 开发日记  
+# e-book 开发日记     
+git push -u origin master
+
+
 之前三次迭代还好吧...
 目前问题蛮多的。RUA
 
