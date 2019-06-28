@@ -23,4 +23,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User u) { userDao.save(u); }
+
+    @Override
+    public Integer login(String email, String pwd) {
+        User user = userDao.findByEmail(email);
+        if (user == null ) { return 2;}
+        else if (user.getActive() == 0) {return 3;}
+        else if (user.getPwd().equals(pwd)) {return 1;}
+        else {return 2;}
+    }
 }

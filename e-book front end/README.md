@@ -31,6 +31,22 @@ order里会有实际详情，是否取消，是否付款云云。
 
 怎么在页面返回从其他db里拿到的数据，比如说 由cart里面的bookisbn（这是个FK），怎么从book数据库中得到书名和价格呢？
 
+2019/6/28
+剩两天多开发时间，时间略显紧迫啊
+开始搞登录 ———— 
+1. 登录、查找这种，一般用的是GET请求，前端传入参数一般用
+``` 
+http
+    .get("/user/loginTest",{params:{email:data.email,pwd:data.pwd}})
+```
+后端接受的话
+```
+    @GetMapping(path="/loginTest")
+    @ResponseBody
+    public Integer logIn(String email, String pwd) 
+```
+注意 用parmas的话，就要保证前后端的参数名称是一样的，都是 email，pwd这种。
+2. 怎么确定登录状态？
 
 
 

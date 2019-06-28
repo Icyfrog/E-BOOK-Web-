@@ -23,7 +23,7 @@
                     </el-row>
                     <el-row>
                         <el-col :span="10">
-                            <el-button id="login" v-on:click="check" style="width:100%" type="primary" >登录</el-button>
+                            <el-button id="login" v-on:click="login" style="width:100%" type="primary" >登录</el-button>
                         </el-col>
                     </el-row>
                 </el-main>
@@ -35,6 +35,7 @@
 
 <script>
 import { constants } from 'fs';
+import http from '../../http-common.js'
 export default {
   data() {
     return {
@@ -43,25 +44,37 @@ export default {
     }
   },
   methods: {
-      check() {
-          if (this.userID == '1@qq.com') {
-              if (this.password == 'lgd') {
-                  console.log('登录成功');
-                  this.$router.replace('/');
-              }
-              else {
-                  alert("用户名或密码错误");
-              }
+      login() {
+          // check
+        if (this.userID == '' || this.password == '' ){
+            alert("用户名或密码为空");
           }
-          if (this.userID == 'admin') {
-              if (this.password == 'admin') {
-                  console.log('登录成功');
-                  this.$router.replace('/admin/userList');
-              }
-              else {
-                  alert("用户名或密码错误");
-              }
-          }
+        
+        var data = {
+            email: this.userID,
+            pwd: this.password
+        };
+        http
+            .get("/user/loginTest",{params:{email:data.email,pwd:data.pwd}})
+            .then(response => {
+                console.log(response.data)
+                if (response.data == 1) {
+                    alert('登录成功')
+                    this.$router.replace('/')
+                }
+                if (response.data == 2) {
+                    alert('登录失败，账号或密码错误')
+                }
+                if (response.data == 3) {
+                    alert('您的账户已被禁用')
+                }
+            })
+            .finally(() => {
+                this.loading = false
+            })
+            .catch(e => {
+                console.log(e)
+            })
       }
   }
 }

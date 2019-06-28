@@ -11,4 +11,6 @@ public interface UserService {
     Iterable<User> findAll();
 
     Iterable<User> findAllByActive(Integer act);
+
+    Integer login(String email, String pwd);
 }
