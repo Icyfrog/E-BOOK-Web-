@@ -74,7 +74,10 @@ export default {
     flex:1;
 }
 .icon{
-    color: aqua;
+    color:#FFFFFF;
     font-size:25px;
+}
+.header-left {
+    color:#E6E6E6
 }
 </style>

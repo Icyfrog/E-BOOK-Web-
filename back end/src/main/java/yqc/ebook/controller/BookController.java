@@ -1,10 +1,16 @@
 package yqc.ebook.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import yqc.ebook.entity.Book;
+import yqc.ebook.entity.BookComment;
 import yqc.ebook.service.BookService;
 
 @CrossOrigin(origins = "http://localhost:9999")
@@ -14,6 +20,8 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Book> getAllBooks() {
@@ -35,8 +43,24 @@ public class BookController {
 
     @GetMapping(path="/detail")
     @ResponseBody
-    public Book getBookDetail( String isbn) {
+    public String getBookDetail( String isbn) {
         System.out.println("qingqiud shi " + isbn + ",.....");
-        return bookService.findByIsbn(isbn);
+        //return "123123123";
+        Book book =  bookService.findByIsbn(isbn);
+        String ss = JSON.toJSONString(book);
+        return ss;
     }
+
+
+    @GetMapping(path="/comment")
+    @ResponseBody
+    public String getBookCommon( String isbn) {
+        System.out.println("123123123 ");
+        //BookComment bookComment = mongoTemplate.findOne(new Query(Criteria.where("isbn").is(isbn)));
+        BookComment bookComment = bookService.findCommentByIsbn(isbn);
+        return JSON.toJSONString(bookComment);
+        //return "123123123";
+    }
+
+
 }

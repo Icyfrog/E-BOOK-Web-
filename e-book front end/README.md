@@ -48,8 +48,18 @@ http
 注意 用parmas的话，就要保证前后端的参数名称是一样的，都是 email，pwd这种。
 2. 怎么确定登录状态？
 
+3. MongoDB
+安装配置走的是这个 https://blog.csdn.net/congcong68/article/details/44277469
+好麻烦啊。。还没怎么用就搞了一上午
+a. 书评放在mongodb里，然后detail里面再给体现出来吧
+b. 封面最好也能放mongodb里. 用base64存在了Mongodb里，然后前端收到json，再转为图片。不过看
+教程都建议用url...
 
 
+4. 之前前后端穿的数据都是string啊，Book啊这种固定的数据结构，忘了可以传 Json了。 
+JavaBean是指一段特殊的Java类，
+
+就是有默然构造方法,只有get,set的方法的java类的对象.
 > A Vue.js project
 
 ## Build Setup

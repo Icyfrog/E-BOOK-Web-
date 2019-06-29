@@ -1,6 +1,7 @@
 package yqc.ebook.dao;
 
 import yqc.ebook.entity.Book;
+import yqc.ebook.entity.BookComment;
 
 public interface BookDao {
 
@@ -11,4 +12,8 @@ public interface BookDao {
     Book findByIsbn(String isbn);
 
     void save(Book b);
+
+    BookComment findCommentByIsbn(String isbn);
+
+    void saveComment(BookComment bookComment);
 }
