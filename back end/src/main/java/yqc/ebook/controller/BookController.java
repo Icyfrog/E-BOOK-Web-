@@ -62,5 +62,19 @@ public class BookController {
         //return "123123123";
     }
 
-
+    @PostMapping(path = "/alterBook")
+    @ResponseBody
+    public Boolean alterBook(@RequestBody JSONObject data) {
+        System.out.println(data.getString("name"));
+        Book book1 = bookService.findByIsbn(data.getString("isbn"));
+        if (book1 != null) {bookService.delete(book1.getId());}
+        Book book = new Book();
+        book.setName(data.getString("name"));
+        book.setInventory(data.getInteger("inventory"));
+        book.setISBN(data.getString("isbn"));
+        book.setAuthor(data.getString("author"));
+        book.setPrice(data.getFloat("price"));
+        bookService.save(book);
+        return true;
+    }
 }

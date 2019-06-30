@@ -11,7 +11,10 @@ public interface BookService {
 
     void save(Book b);
 
+    void delete(Integer id);
+
     BookComment findCommentByIsbn(String isbn);
 
     void saveComment(BookComment bookComment);
+
 }

@@ -21,20 +21,26 @@
         <div class="header-right">
             <span class='iconfont'>
                 &nbsp&nbsp
-                <router-link to="/" class="icon">
+                <router-link v-if='bool' to="/admin/CheckBook" class="icon2">
                     &#xe60d;
+                </router-link>
+            </span>
+            <span class='iconfont'>
+                &nbsp&nbsp
+                <router-link v-if='bool' to="/admin/AddNewBook" class="icon">
+                    &#xe60d;
+                </router-link>
+            </span>
+            <span class='iconfont'>
+                &nbsp&nbsp
+                <router-link v-if='bool' to='/admin/UserList' class="icon">
+                    &#xe65d;
                 </router-link>
             </span>
             <span class='iconfont'>
                 &nbsp&nbsp
                 <router-link to="/cart" class="icon">
                     &#xe60e;
-                </router-link>
-            </span>
-            <span class='iconfont'>
-                &nbsp&nbsp
-                <router-link :to='way' class="icon">
-                    &#xe65d;
                 </router-link>
             </span>
             <span class='iconfont'>
@@ -66,9 +72,14 @@
 export default {
     data() {
         return {
-            way:'/reco'
+            bool:false
         }
-    }
+    },
+    mounted() {
+        //location.reload();
+        const data = JSON.parse(sessionStorage.getItem('login'));
+        if (data.ad == 1) { this.bool = true; }
+    },
 
 }
 </script>
@@ -89,5 +100,9 @@ export default {
 }
 .header-left {
     color:#E6E6E6
+}
+.icon2{
+    color:#00FFFF;
+    font-size:25px;
 }
 </style>

@@ -77,8 +77,7 @@ export default {
       }
     },
     mounted() {
-      const dataA = {'email':'1@qq.com','id':1};
-      sessionStorage.setItem('test1',JSON.stringify(dataA));
+      
     }
   }
 </script>

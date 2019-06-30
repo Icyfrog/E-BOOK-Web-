@@ -11,6 +11,8 @@ import Signup from '@/components/login/Signup'
 import Detail from '@/components/detail/bookDetail'
 import UserList from '@/components/Admin/UserList'
 import AddNewBook from '@/components/Admin/AddNewBook'
+import CheckBook from '@/components/Admin/CheckBook'
+import AlterBook from '@/components/Admin/AlterBook'
 import Order from '@/components/order/Order'
 
 Vue.use(Router)
@@ -55,11 +57,6 @@ export default new Router({
       component: User
     },
     {
-      path: '/list-detail/:isbn',
-      name: 'detail',
-      component: Detail
-    },
-    {
       path:'/admin/UserList',
       name: 'UserList',
       component: UserList
@@ -73,6 +70,21 @@ export default new Router({
       path:'/order',
       name:'order',
       component: Order
-    }
+    },
+    {
+      path:'/admin/CheckBook',
+      name:CheckBook,
+      component:CheckBook
+    },
+    {
+      path:'/admin/AlterBook/:isbn',
+      name:AlterBook,
+      component:AlterBook
+    },
+    {
+      path: '/list-detail/:isbn',
+      name: 'detail',
+      component: Detail
+    },
   ]
 })

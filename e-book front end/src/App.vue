@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Head/>
-    <router-view/>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -11,6 +11,11 @@ export default {
   name: 'App',
   components:{
     Head
+  },
+  data() {
+    return {
+      isRouterAlive: true
+    }
   }
 }
 </script>

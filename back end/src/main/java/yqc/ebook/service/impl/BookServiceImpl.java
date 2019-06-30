@@ -27,6 +27,9 @@ public class BookServiceImpl implements BookService {
     public void save(Book b) {bookDao.save(b);}
 
     @Override
+    public void delete(Integer id) { bookDao.delete(id);}
+
+    @Override
     public BookComment findCommentByIsbn(String isbn) {return bookDao.findCommentByIsbn(isbn);}
 
     @Override

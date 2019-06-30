@@ -27,7 +27,10 @@ public class BookDaoImpl implements BookDao {
     public Book findByIsbn(String isbn) {return bookRepository.findByIsbn(isbn);}
 
     @Override
-    public void save(Book b) {bookRepository.save(b);}
+    public void save(Book b) {bookRepository.saveAndFlush(b);}
+
+    @Override
+    public void delete(Integer id) { bookRepository.deleteById(id);}
 
     @Override
     public BookComment findCommentByIsbn(String isbn) {return bookCommentRepository.findByIsbn(isbn);}

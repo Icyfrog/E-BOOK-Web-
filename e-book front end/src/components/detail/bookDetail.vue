@@ -80,21 +80,6 @@ export default {
         }
     }
     
-    /*
-    mounted() {
-        var ss = this.$route.params.isbn;
-        console.log(ss);
-        http
-          .get("/book/detail", ss)
-          .then(response => {
-            console.log(response.data)
-          this.tableData = response.data
-        })
-        .catch(e => {
-          console.log(e)
-        })
-    }
-    */
 </script>
 
 <style>

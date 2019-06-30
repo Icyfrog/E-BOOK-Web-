@@ -48,11 +48,7 @@
         <template slot-scope="scope">
           <el-button type="primary"
             size="medium"
-            @click="getInfo(scope.$index, scope.row)">详情信息</el-button>
-          <el-button
-            size="medium"
-            type="danger"
-            @click="addOrder(scope.$index, scope.row)">加入购物车</el-button>
+            @click="getInfo(scope.$index, scope.row)">更改信息</el-button>
         </template>
 
       </el-table-column>
@@ -65,7 +61,7 @@
 </template>
 
 <script>
-import http from '../http-common.js'
+import http from '../../http-common.js'
 export default {
     //inject: ['reload'],
      data() {
@@ -81,20 +77,8 @@ export default {
     methods: {
       getInfo(index,row) {      // 函数，还未实现
         console.log(index,row);
-        this.$router.replace('/list-detail/'+row.isbn);
+        this.$router.replace('/admin/AlterBook/'+row.isbn);
       },
-      addOrder(index, row) {    // 函数，还未实现
-        console.log(index, row);
-        const data = JSON.parse(sessionStorage.getItem('login'));
-        var order = {
-          orderuseremail : data.email,
-          orderisbn : row.isbn,
-          paid:0,
-          cancled:0
-        };
-        http
-          .post("/addOrder",order)
-      }
     },
     mounted() {
       //location.reload();
