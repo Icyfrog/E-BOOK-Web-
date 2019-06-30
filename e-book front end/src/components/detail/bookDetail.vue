@@ -24,10 +24,6 @@
           <img :src='ppp' width="300">
         </div>
         <br>
-        <el-button class="button"
-            size="medium"
-            type="danger"
-            @click="addOrder">加入购物车</el-button>
   </div>
 </template>
 

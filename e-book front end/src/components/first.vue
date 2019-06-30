@@ -72,7 +72,7 @@ export default {
             tableData:[],
             search: '',
             order: {
-              orderuseremail:'1@qq.com',
+              orderuseremail:'',
               orderisbn:''
             }
       }
@@ -84,8 +84,9 @@ export default {
       },
       addOrder(index, row) {    // 函数，还未实现
         console.log(index, row);
+        const data = JSON.parse(sessionStorage.getItem('login'));
         var order = {
-          orderuseremail : this.order.orderuseremail,
+          orderuseremail : data.email,
           orderisbn : row.isbn,
           paid:0,
           cancled:0

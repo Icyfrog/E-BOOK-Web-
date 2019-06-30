@@ -15,6 +15,8 @@ public class User {
     private String pwd;
     @Column
     private Integer active;
+    @Column
+    private Integer ad;
 
     public User(){
         super();
@@ -59,5 +61,13 @@ public class User {
 
     public void setActive(Integer active) {
         this.active = active;
+    }
+
+    public Integer getAd() {
+        return ad;
+    }
+
+    public void setAd(Integer ad) {
+        this.ad = ad;
     }
 }

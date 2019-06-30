@@ -1,5 +1,6 @@
 package yqc.ebook.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import yqc.ebook.dao.UserDao;
@@ -25,11 +26,11 @@ public class UserServiceImpl implements UserService {
     public void save(User u) { userDao.save(u); }
 
     @Override
-    public Integer login(String email, String pwd) {
+    public String login(String email, String pwd) {
         User user = userDao.findByEmail(email);
-        if (user == null ) { return 2;}
-        else if (user.getActive() == 0) {return 3;}
-        else if (user.getPwd().equals(pwd)) {return 1;}
-        else {return 2;}
+        if (user == null) { return "wrongemail";}
+        if (!user.getPwd().equals(pwd)) { return "WrongPwd";}
+        //if (user == null) { return "wrongemail";}
+        else {return JSON.toJSONString(user);}
     }
 }

@@ -33,8 +33,14 @@
             </span>
             <span class='iconfont'>
                 &nbsp&nbsp
-                <router-link to="/" class="icon">
+                <router-link :to='way' class="icon">
                     &#xe65d;
+                </router-link>
+            </span>
+            <span class='iconfont'>
+                &nbsp&nbsp
+                <router-link to="/signup" class="icon">
+                    注册
                 </router-link>
             </span>
             <span class='iconfont'>
@@ -45,13 +51,12 @@
             </span>
             <span class='iconfont'>
                 &nbsp&nbsp
-                <router-link to="/signup" class="icon">
-                    注册
+                <router-link to="/order" class="icon">
+                    订单
                 </router-link>
             </span>
             <span>
-            &nbsp&nbsp&nbsp&nbsp&nbsp
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             </span>
         </div>
     </div>
@@ -59,6 +64,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+            way:'/reco'
+        }
+    }
 
 }
 </script>

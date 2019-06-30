@@ -19,8 +19,8 @@ public class TmpcartServeveImpl implements TmpcartService {
     }
 
     @Override
-    public Iterable<Tmpcart> findAllByCancledAndPaid(Integer can, Integer paid) {
-        return tmpcartDao.findAllByCancledAndPaid(can, paid);
+    public Iterable<Tmpcart> findAll(String email, Integer can, Integer paid) {
+        return tmpcartDao.findAll(email, can, paid);
     }
 
     public Void save(Tmpcart tmp) {

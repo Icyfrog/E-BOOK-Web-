@@ -11,6 +11,7 @@ import Signup from '@/components/login/Signup'
 import Detail from '@/components/detail/bookDetail'
 import UserList from '@/components/Admin/UserList'
 import AddNewBook from '@/components/Admin/AddNewBook'
+import Order from '@/components/order/Order'
 
 Vue.use(Router)
 
@@ -67,6 +68,11 @@ export default new Router({
       path:'/admin/AddNewBook',
       name:'AddNewBook',
       component: AddNewBook
+    },
+    {
+      path:'/order',
+      name:'order',
+      component: Order
     }
   ]
 })

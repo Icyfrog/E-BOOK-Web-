@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping(path="/loginTest")
     @ResponseBody
-    public Integer logIn(String email, String pwd) {
+    public String logIn(String email, String pwd) {
         System.out.println(email);   //测试是否传入了参数
         System.out.println(pwd);   //测试是否传入了参数
         return userService.login(email,pwd);

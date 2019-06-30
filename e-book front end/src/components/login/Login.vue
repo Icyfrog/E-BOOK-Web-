@@ -58,15 +58,20 @@ export default {
             .get("/user/loginTest",{params:{email:data.email,pwd:data.pwd}})
             .then(response => {
                 console.log(response.data)
-                if (response.data == 1) {
-                    alert('登录成功')
-                    this.$router.replace('/')
+                sessionStorage.removeItem('login');
+                if (response.data.active == 0) {
+                    alert('您的账户已被禁用')
                 }
-                if (response.data == 2) {
+                else if (response.data == 'WrongPwd') {
                     alert('登录失败，账号或密码错误')
                 }
-                if (response.data == 3) {
-                    alert('您的账户已被禁用')
+                else if (response.data == 'wrongemail') {
+                    alert('登录失败，账号不存在')
+                }
+                else{
+                    alert('登录成功')
+                    sessionStorage.setItem('login',JSON.stringify(response.data));
+                    this.$router.replace('/')
                 }
             })
             .finally(() => {

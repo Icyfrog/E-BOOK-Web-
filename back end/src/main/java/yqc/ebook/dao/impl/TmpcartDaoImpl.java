@@ -19,8 +19,8 @@ public class TmpcartDaoImpl implements TmpcartDao {
     }
 
     @Override
-    public Iterable<Tmpcart> findAllByCancledAndPaid(Integer can, Integer paid) {
-        return tmpcartRepository.findAllByCancledAndPaid(can, paid);
+    public Iterable<Tmpcart> findAll(String email, Integer can, Integer paid) {
+        return tmpcartRepository.findAllByOrderuseremailAndCancledAndPaid(email, can, paid);
     }
 
     public Void save(Tmpcart tmp) {

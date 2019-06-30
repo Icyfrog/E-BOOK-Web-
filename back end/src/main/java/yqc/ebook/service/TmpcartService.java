@@ -8,7 +8,7 @@ public interface TmpcartService {
 
     Optional<Tmpcart> findById(Integer id);
 
-    Iterable<Tmpcart> findAllByCancledAndPaid(Integer can, Integer paid);
+    Iterable<Tmpcart> findAll(String email, Integer can, Integer paid);
 
     Void save(Tmpcart tmp);
 }

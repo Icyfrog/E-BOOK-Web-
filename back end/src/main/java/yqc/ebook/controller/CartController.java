@@ -18,8 +18,8 @@ public class CartController {
     private BookService bookService;
 
     @GetMapping(path="/cart")
-    public @ResponseBody Iterable<Tmpcart> getAllBooks() {
-        return tmpcartService.findAllByCancledAndPaid(0,0);
+    public @ResponseBody Iterable<Tmpcart> getAllBooks(String email) {
+        return tmpcartService.findAll(email, 0,0);
     }
 
     @PostMapping(path="/buy")

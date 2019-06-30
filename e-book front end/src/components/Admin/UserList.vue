@@ -69,6 +69,11 @@ export default {
       }
     },
     mounted() {
+      const data = JSON.parse(sessionStorage.getItem('login'));
+      if (data.ad == 0) {
+          alert('您无权限访问本界面')
+          this.$router.replace('/')
+      }
       http
         .get('/user/all')
         .then(response => {

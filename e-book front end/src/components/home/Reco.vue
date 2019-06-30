@@ -72,9 +72,14 @@ export default {
             isbn: '978-7-111-56127-9',
           },
           ],
-            search: ''
+          search: '',
+          //const orderDataA :{'email':'1@qq.com','id':1},
       }
     },
+    mounted() {
+      const dataA = {'email':'1@qq.com','id':1};
+      sessionStorage.setItem('test1',JSON.stringify(dataA));
+    }
   }
 </script>
 

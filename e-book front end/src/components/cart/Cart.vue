@@ -73,8 +73,9 @@ export default {
     },
 
     mounted() {
+      const dataC = JSON.parse(sessionStorage.getItem('login'));
       http
-        .get('/cart')
+        .get('/cart',{params:{email:dataC.email}})
         .then(response => {
           this.tableData = response.data
         })
