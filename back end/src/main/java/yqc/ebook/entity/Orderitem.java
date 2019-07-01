@@ -7,10 +7,12 @@ public class Orderitem {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
+
     @Column(name = "orderid")
     private Integer orderId;
-    @Column(name = "bookisbn")
-    private String bookIsbn;
+
+    @Column(name = "bookid")
+    private Integer bookid;
 
     public Integer getId() {
         return id;
@@ -28,11 +30,12 @@ public class Orderitem {
         return orderId;
     }
 
-    public String getBookIsbn() {
-        return bookIsbn;
+    public void setBookid(Integer bookid) {
+        this.bookid = bookid;
     }
 
-    public void setBookIsbn(String bookIsbn) {
-        this.bookIsbn = bookIsbn;
+    public Integer getBookid() {
+        return bookid;
     }
+
 }

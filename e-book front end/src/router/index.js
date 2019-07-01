@@ -13,6 +13,7 @@ import UserList from '@/components/Admin/UserList'
 import AddNewBook from '@/components/Admin/AddNewBook'
 import CheckBook from '@/components/Admin/CheckBook'
 import AlterBook from '@/components/Admin/AlterBook'
+import AllOrders from '@/components/Admin/AllOrders'
 import Order from '@/components/order/Order'
 
 Vue.use(Router)
@@ -75,6 +76,11 @@ export default new Router({
       path:'/admin/CheckBook',
       name:CheckBook,
       component:CheckBook
+    },
+    {
+      path:'/admin/AllOrders',
+      name:AllOrders,
+      component:AllOrders
     },
     {
       path:'/admin/AlterBook/:id',

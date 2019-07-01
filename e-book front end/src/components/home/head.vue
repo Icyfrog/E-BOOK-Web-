@@ -39,6 +39,12 @@
             </span>
             <span class='iconfont'>
                 &nbsp&nbsp
+                <router-link v-if='bool' to='/admin/AllOrders' class="icon">
+                    All orders
+                </router-link>
+            </span>
+            <span class='iconfont'>
+                &nbsp&nbsp
                 <router-link to="/cart" class="icon">
                     &#xe60e;
                 </router-link>

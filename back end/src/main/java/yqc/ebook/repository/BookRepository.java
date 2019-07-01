@@ -6,4 +6,5 @@ import yqc.ebook.entity.Book;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
     Book findByIsbn(String isbn);
+
 }

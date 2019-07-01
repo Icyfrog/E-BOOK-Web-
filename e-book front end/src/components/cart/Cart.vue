@@ -57,9 +57,13 @@ export default {
         http
           .post("/delete",row.id)
         location.reload();
+      },
+      clean() {
+        var data = this.tableData;
+          http
+          .post("/clean",data);
       }
     },
-
     mounted() {
       const dataC = JSON.parse(sessionStorage.getItem('login'));
       http
