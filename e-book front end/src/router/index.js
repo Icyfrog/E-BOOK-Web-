@@ -77,12 +77,12 @@ export default new Router({
       component:CheckBook
     },
     {
-      path:'/admin/AlterBook/:isbn',
+      path:'/admin/AlterBook/:id',
       name:AlterBook,
       component:AlterBook
     },
     {
-      path: '/list-detail/:isbn',
+      path: '/list-detail/:id',
       name: 'detail',
       component: Detail
     },

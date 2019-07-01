@@ -5,6 +5,8 @@ import yqc.ebook.entity.BookComment;
 
 public interface BookService {
 
+    Book findOne(Integer id);
+
     Iterable<Book> findAll();
 
     Book findByIsbn(String isbn);

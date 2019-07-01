@@ -2,11 +2,18 @@
     <div>
   <el-container>
     <el-container>
-      <el-aside width="150px"></el-aside>
+      <el-aside width="50px"></el-aside>
       <el-main>
           <el-table class="booktable" 
           :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
           style="width: 100%">
+
+        <el-table-column
+          prop="id"
+          label="ID"
+          width="180">
+        </el-table-column>
+
         <el-table-column
           prop="name"
           label="书名"
@@ -81,19 +88,17 @@ export default {
     methods: {
       getInfo(index,row) {      // 函数，还未实现
         console.log(index,row);
-        this.$router.replace('/list-detail/'+row.isbn);
+        this.$router.replace('/list-detail/'+row.id);
       },
       addOrder(index, row) {    // 函数，还未实现
         console.log(index, row);
         const data = JSON.parse(sessionStorage.getItem('login'));
-        var order = {
-          orderuseremail : data.email,
-          orderisbn : row.isbn,
-          paid:0,
-          cancled:0
+        var cart = {
+          useremail : data.email,
+          id: row.id,
         };
         http
-          .post("/addOrder",order)
+          .post("/addCart",cart)
       }
     },
     mounted() {

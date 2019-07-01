@@ -11,6 +11,8 @@ public interface BookDao {
 
     Book findByIsbn(String isbn);
 
+    //Book findById(Integer id);
+
     void save(Book b);
 
     void delete(Integer id);

@@ -48,9 +48,9 @@ export default {
       }
     },
     mounted() {
-      var ss = this.$route.params.isbn;
+      var ss = this.$route.params.id;
       http
-        .get('/book/detail', {params:{isbn:ss}})
+        .get('/book/detail', {params:{id:ss}})
         .then(response => {
           console.log(response.data)
           this.bookname = response.data.name;
@@ -65,7 +65,7 @@ export default {
           console.log(e)
         })
         http 
-          .get('/book/comment',{params:{isbn:ss}})
+          .get('/book/comment',{params:{id:ss}})
           .then(response => {
             console.log(response.data)
             this.bookcomment = response.data.comment;

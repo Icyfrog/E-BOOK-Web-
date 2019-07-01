@@ -2,11 +2,18 @@
     <div>
   <el-container>
     <el-container>
-      <el-aside width="150px"></el-aside>
+      <el-aside width="110px"></el-aside>
       <el-main>
           <el-table class="booktable" 
           :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
           style="width: 100%">
+
+        <el-table-column
+          prop="id"
+          label="ID"
+          width="180">
+        </el-table-column>
+
         <el-table-column
           prop="name"
           label="书名"
@@ -77,11 +84,15 @@ export default {
     methods: {
       getInfo(index,row) {      // 函数，还未实现
         console.log(index,row);
-        this.$router.replace('/admin/AlterBook/'+row.isbn);
+        this.$router.replace('/admin/AlterBook/'+row.id);
       },
     },
     mounted() {
-      //location.reload();
+      const data = JSON.parse(sessionStorage.getItem('login'));
+      if (data.ad == 0) {
+          alert('您无权限访问本界面')
+          this.$router.replace('/')
+      }
       http
         .get('/book/all')
         .then(response => {

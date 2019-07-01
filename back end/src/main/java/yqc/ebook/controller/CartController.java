@@ -1,4 +1,5 @@
 package yqc.ebook.controller;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -43,14 +44,22 @@ public class CartController {
         return true;
     }
 
-    @PostMapping(path = "/addOrder")
-    public @ResponseBody Boolean addOrder(@RequestBody Tmpcart order) {
-        System.out.println(order.getOrderisbn());
-        Book tmp = bookService.findByIsbn(order.getOrderisbn());
-        Integer inv = tmp.getInventory() - 1;
-        tmp.setInventory(inv);
-        bookService.save(tmp);
-        tmpcartService.save(order);
+    @PostMapping(path="/addCart")
+    public @ResponseBody Boolean deleteBook(@RequestBody JSONObject data) {
+        Tmpcart tmpcart = new Tmpcart();
+        Integer id = data.getInteger("id");
+        String email = data.getString("useremail");
+        Book book = bookService.findOne(id);
+        tmpcart.setCancled(0);
+        tmpcart.setPaid(0);
+        tmpcart.setBookid(id);
+        tmpcart.setBookisbn(book.getISBN());//Bookisbn(book.getISBN());
+        tmpcart.setOrderuseremail(email);
+        tmpcart.setBookprice(book.getPrice());
+        tmpcartService.save(tmpcart);
         return true;
     }
+
+
+
 }

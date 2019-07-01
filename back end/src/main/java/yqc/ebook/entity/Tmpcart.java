@@ -12,7 +12,11 @@ public class Tmpcart {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    private String orderisbn;
+    private Integer bookid;
+
+    private String bookisbn;
+
+    private Float bookprice;
 
     private String orderuseremail;
 
@@ -28,35 +32,51 @@ public class Tmpcart {
         return id;
     }
 
-    public String getOrderisbn() {
-        return orderisbn;
+    public void setBookid(Integer bookid) {
+        this.bookid = bookid;
     }
 
-    public void setOrderisbn(String orderisbn) {
-        this.orderisbn = orderisbn;
-    }
-
-    public String getOrderuseremail() {
-        return orderuseremail;
-    }
-
-    public void setOrderuseremail(String orderuseremail) {
-        this.orderuseremail = orderuseremail;
-    }
-
-    public Integer getPaid() {
-        return paid;
+    public Integer getBookid() {
+        return bookid;
     }
 
     public void setPaid(Integer paid) {
         this.paid = paid;
     }
 
-    public Integer getCancled() {
-        return cancled;
+    public Integer getPaid() {
+        return paid;
     }
 
     public void setCancled(Integer cancled) {
         this.cancled = cancled;
+    }
+
+    public Integer getCancled() {
+        return cancled;
+    }
+
+    public String getBookisbn() {
+        return bookisbn;
+    }
+
+    public void setBookisbn(String isbn) {
+        this.bookisbn = isbn;
+    }
+
+    public Float getBookprice() {
+        return bookprice;
+    }
+
+    public void setBookprice(Float price) {
+        this.bookprice = price;
+    }
+
+    public void setOrderuseremail(String orderuseremail) {
+        this.orderuseremail = orderuseremail;
+    }
+
+    public String getOrderuseremail() {
+        return orderuseremail;
     }
 }

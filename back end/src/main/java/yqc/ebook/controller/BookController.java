@@ -43,10 +43,10 @@ public class BookController {
 
     @GetMapping(path="/detail")
     @ResponseBody
-    public String getBookDetail( String isbn) {
-        System.out.println("qingqiud shi " + isbn + ",.....");
+    public String getBookDetail( Integer id) {
+        //System.out.println("qingqiud shi " + isbn + ",.....");
         //return "123123123";
-        Book book =  bookService.findByIsbn(isbn);
+        Book book =  bookService.findOne(id);
         String ss = JSON.toJSONString(book);
         return ss;
     }
@@ -54,10 +54,11 @@ public class BookController {
 
     @GetMapping(path="/comment")
     @ResponseBody
-    public String getBookCommon( String isbn) {
-        System.out.println("123123123 ");
+    public String getBookCommon( Integer id) {
+        System.out.println("get comment ");
+        Book book = bookService.findOne(id);
         //BookComment bookComment = mongoTemplate.findOne(new Query(Criteria.where("isbn").is(isbn)));
-        BookComment bookComment = bookService.findCommentByIsbn(isbn);
+        BookComment bookComment = bookService.findCommentByIsbn(book.getISBN());
         return JSON.toJSONString(bookComment);
         //return "123123123";
     }
@@ -65,9 +66,9 @@ public class BookController {
     @PostMapping(path = "/alterBook")
     @ResponseBody
     public Boolean alterBook(@RequestBody JSONObject data) {
-        System.out.println(data.getString("name"));
-        Book book1 = bookService.findByIsbn(data.getString("isbn"));
-        if (book1 != null) {bookService.delete(book1.getId());}
+        System.out.println(data);
+        Book book1 = bookService.findOne(data.getInteger("id"));
+        if (book1 != null) {bookService.delete(book1.getId()); System.out.println("删除！！！");}
         Book book = new Book();
         book.setName(data.getString("name"));
         book.setInventory(data.getInteger("inventory"));
@@ -75,6 +76,32 @@ public class BookController {
         book.setAuthor(data.getString("author"));
         book.setPrice(data.getFloat("price"));
         bookService.save(book);
+        return true;
+    }
+
+    @PostMapping(path = "/deleteBook")
+    @ResponseBody
+    public Boolean deleteBook(@RequestBody JSONObject data) {
+        System.out.println(data);
+        Book book1 = bookService.findOne(data.getInteger("id"));
+        if (book1 != null) {bookService.delete(book1.getId()); System.out.println("删除！！！");}
+        return true;
+    }
+
+    @PostMapping(path = "/setpic")
+    @ResponseBody
+    public Boolean setPic(@RequestBody JSONObject data) {
+        Integer id = data.getInteger("id");
+        System.out.println(id);
+        System.out.println("64收到了");
+        Book book = bookService.findOne(id);
+        String isbn = book.getISBN();
+        BookComment bookComment = new BookComment();
+        bookComment.setIsbn(isbn);
+        bookComment.setId(id);
+        bookComment.setBase64(data.getString("base64"));
+        bookComment.setComment("Nothing");
+        bookService.saveComment(bookComment);
         return true;
     }
 }

@@ -19,6 +19,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book findOne(Integer id) {
+        return bookDao.findOne(id);
+    }
+
+    @Override
     public Book findByIsbn(String isbn) {
         return bookDao.findByIsbn(isbn);
     }

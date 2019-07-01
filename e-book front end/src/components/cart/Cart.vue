@@ -2,37 +2,28 @@
     <div>
         <el-container>
             <el-container>
-            <el-aside width="150px"></el-aside>
+            <el-aside width="350px"></el-aside>
             <el-main>
                 <el-table class="booktable" 
                 :data="tableData.filter(data => !search || data.email.toLowerCase().includes(search.toLowerCase()))"
                 style="width: 100%">
+
+
                     <el-table-column
-                    prop="id"
-                    label="ID"
+                    prop="bookisbn"
+                    label="ISBN"
                     width="180">
                     </el-table-column>
+
                     <el-table-column
-                    prop="orderuseremail"
-                    label="useremail"
+                    prop="bookprice"
+                    label="price/￥"
                     width="180">
                     </el-table-column>
-                    <el-table-column
-                    prop="orderisbn"
-                    label="BookIsbn"
-                    width="180">
-                    </el-table-column>
-                    <el-table-column
-                    prop="paid"
-                    label="是否付款"
-                    width="180">
-                    </el-table-column>
+
                     <el-table-column
                 align="right">
                 <template slot-scope="scope">
-                <el-button type="danger"
-                    size="medium"
-                    @click="handleBuy(scope.$index, scope.row)">购买</el-button>
                 <el-button
                     size="medium"
                     type="primary"
@@ -40,10 +31,13 @@
                 </template>
             </el-table-column>
             </el-table>
+            <el-button class = "clean" type="danger"
+               size="medium"
+               @click="clean()">清空购物车</el-button>
             </el-main>
+            <el-aside width="350px"></el-aside>
             </el-container>
         </el-container>
-
     </div>
 </template>
 
@@ -58,12 +52,6 @@ export default {
     },
 
     methods: {
-      handleBuy(index, row) {      // 函数，还未实现
-        console.log(index, row);
-        http 
-          .post("/buy", row.id)
-        location.reload();
-      },
       handleDelete(index, row) {    // 函数，还未实现
         console.log(index, row);
         http
@@ -94,5 +82,9 @@ export default {
 }
 #SUM{
     text-align:right;
+}
+.clean{
+  position: absolute;
+    left: 1070px;
 }
 </style>
