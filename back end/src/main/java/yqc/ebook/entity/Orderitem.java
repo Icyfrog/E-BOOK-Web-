@@ -14,6 +14,9 @@ public class Orderitem {
     @Column(name = "bookid")
     private Integer bookid;
 
+    @Column(name = "order_time")
+    private String orderTime;
+
     public Integer getId() {
         return id;
     }
@@ -38,4 +41,11 @@ public class Orderitem {
         return bookid;
     }
 
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public String getOrderTime() {
+        return orderTime;
+    }
 }

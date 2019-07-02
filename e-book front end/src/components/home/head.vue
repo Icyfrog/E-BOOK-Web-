@@ -21,6 +21,12 @@
         <div class="header-right">
             <span class='iconfont'>
                 &nbsp&nbsp
+                <router-link v-if='bool' to="/admin/totalBook" class="icon3">
+                    &#xe60d;
+                </router-link>
+            </span>
+            <span class='iconfont'>
+                &nbsp&nbsp
                 <router-link v-if='bool' to="/admin/CheckBook" class="icon2">
                     &#xe60d;
                 </router-link>
@@ -67,6 +73,12 @@
                     订单
                 </router-link>
             </span>
+            <span class='iconfont'>
+                &nbsp&nbsp
+                <router-link to="/order/userbooks" class="icon">
+                    消费历史
+                </router-link>
+            </span>
             <span>
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             </span>
@@ -109,6 +121,10 @@ export default {
 }
 .icon2{
     color:#00FFFF;
+    font-size:25px;
+}
+.icon3{
+    columns: hsl(0, 100%, 47%);
     font-size:25px;
 }
 </style>

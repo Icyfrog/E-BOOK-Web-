@@ -29,15 +29,8 @@
         <el-table-column
         align="right">
         <template slot="header" slot-scope="scope">
-          <el-input
-            v-model="search"
-            size="medium"
-            placeholder="输入关键字搜索email"/>
         </template>
         <template slot-scope="scope">
-          <el-button type="primary"
-            size="medium"
-            @click="getInfo(scope.$index, scope.row)">详情信息</el-button>
         </template>
       </el-table-column>
       </el-table>

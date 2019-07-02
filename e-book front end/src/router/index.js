@@ -16,6 +16,9 @@ import AlterBook from '@/components/Admin/AlterBook'
 import AllOrders from '@/components/Admin/AllOrders'
 import Order from '@/components/order/Order'
 import OrderDetail from '@/components/order/OrderDetail'
+import totalBook from '@/components/Admin/totalBook'
+import emailBook from '@/components/Admin/emailBook'
+import userBooks from '@/components/order/userbooks'
 
 Vue.use(Router)
 
@@ -97,6 +100,21 @@ export default new Router({
       path:'/items/:oid',
       name:'items',
       component:OrderDetail
+    },
+    {
+      path:'/admin/totalBook',
+      name:'totalBook',
+      component:totalBook
+    },
+    {
+      path:'/admin/emailBook',
+      name:'emailBook',
+      component:emailBook
+    },
+    {
+      path:'/order/userbooks',
+      name:'userbooks',
+      component:userBooks
     }
   ]
 })

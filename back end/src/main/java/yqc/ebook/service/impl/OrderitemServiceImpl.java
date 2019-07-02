@@ -21,4 +21,7 @@ public class OrderitemServiceImpl implements OrderitemService {
     public void save(Orderitem orderitem) {
         orderItemReposity.save(orderitem);
     }
+
+    @Override
+    public Iterable<Orderitem> findAll() {return orderItemReposity.findAll();}
 }
