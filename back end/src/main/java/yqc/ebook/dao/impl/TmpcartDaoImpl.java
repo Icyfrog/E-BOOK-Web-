@@ -27,4 +27,8 @@ public class TmpcartDaoImpl implements TmpcartDao {
         tmpcartRepository.save(tmp);
         return null;
     }
+
+    public void delete(Tmpcart tmp) {
+        tmpcartRepository.delete(tmp);
+    }
 }

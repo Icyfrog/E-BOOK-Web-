@@ -23,8 +23,15 @@ public class TmpcartServeveImpl implements TmpcartService {
         return tmpcartDao.findAll(email, can, paid);
     }
 
+    @Override
     public Void save(Tmpcart tmp) {
         tmpcartDao.save(tmp);
         return null;
     }
+
+    @Override
+    public void delete(Tmpcart tmp) {
+        tmpcartDao.delete(tmp);
+    }
+
 }

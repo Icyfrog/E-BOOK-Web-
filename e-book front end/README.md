@@ -79,6 +79,8 @@ JavaBean是指一段特殊的Java类，
 7. 有关订单处理这一方面，还有个问题是 怎么将不同的类实体组合为JSON，估计会有API可以用？
 8. 以及空订单的处理？
 9. 明白了service层的另一层意义：不用的controller可以调用多个service
+10. 前端搜索还有问题：不是整体搜索的兄dei，需要改进
+11. 外键FK也没加
 > A Vue.js project
 
 ## Build Setup

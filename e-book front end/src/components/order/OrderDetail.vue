@@ -10,19 +10,19 @@
 
         <el-table-column
           prop="id"
-          label="ID"
+          label="order item ID"
           width="180">
         </el-table-column>
 
         <el-table-column
-          prop="userEmail"
-          label="user email"
+          prop="orderId"
+          label="order ID"
           width="180">
         </el-table-column>
 
         <el-table-column
-          prop="orderTime"
-          label="下单时间"
+          prop="bookid"
+          label="book ID"
           width="180">
         </el-table-column>
         
@@ -58,14 +58,14 @@ export default {
         }
     },
     mounted(){
-      const data = JSON.parse(sessionStorage.getItem('login'));
-      if (data.ad == 0) {
-          alert('您无权限访问本界面')
-          this.$router.replace('/')
-      }
+      var ss = this.$route.params.oid;
+      console.log('ss');
+      console.log(ss);
       http
-        .get('/order/all')
+        .get('/order/items', {params:{oid:ss}})
         .then(response => {
+          console.log('反悔了');
+          console.log(response.data);
           this.tableData = response.data
         })
         .finally(() => {
@@ -75,12 +75,6 @@ export default {
           console.log(e)
         })
     },
-    methods: {
-      getInfo(index,row) {
-        console.log(index,row);
-        this.$router.replace('/items/'+row.id);
-      },
-      }
 
 }
 </script>

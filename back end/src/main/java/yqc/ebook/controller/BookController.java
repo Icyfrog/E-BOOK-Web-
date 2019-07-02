@@ -52,6 +52,7 @@ public class BookController {
     }
 
 
+
     @GetMapping(path="/comment")
     @ResponseBody
     public String getBookCommon( Integer id) {
@@ -67,15 +68,26 @@ public class BookController {
     @ResponseBody
     public Boolean alterBook(@RequestBody JSONObject data) {
         System.out.println(data);
-        Book book1 = bookService.findOne(data.getInteger("id"));
-        if (book1 != null) {bookService.delete(book1.getId()); System.out.println("删除！！！");}
-        Book book = new Book();
+        Book book = bookService.findOne(data.getInteger("id"));
         book.setName(data.getString("name"));
         book.setInventory(data.getInteger("inventory"));
         book.setISBN(data.getString("isbn"));
         book.setAuthor(data.getString("author"));
         book.setPrice(data.getFloat("price"));
         bookService.save(book);
+        return true;
+    }
+
+
+    @PostMapping(path="/testBook")
+    @ResponseBody
+    public Boolean updateTest() {
+        Integer id = 30;
+        Book test = bookService.findOne(id);
+        System.out.println("id是" + id);
+        test.setInventory(2019);
+        System.out.println(test);
+        bookService.save(test);
         return true;
     }
 

@@ -15,6 +15,7 @@ import CheckBook from '@/components/Admin/CheckBook'
 import AlterBook from '@/components/Admin/AlterBook'
 import AllOrders from '@/components/Admin/AllOrders'
 import Order from '@/components/order/Order'
+import OrderDetail from '@/components/order/OrderDetail'
 
 Vue.use(Router)
 
@@ -92,5 +93,10 @@ export default new Router({
       name: 'detail',
       component: Detail
     },
+    {
+      path:'/items/:oid',
+      name:'items',
+      component:OrderDetail
+    }
   ]
 })

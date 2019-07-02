@@ -61,7 +61,18 @@ export default {
       clean() {
         var data = this.tableData;
           http
-          .post("/clean",data);
+          .post("/order/clean",data)
+          .then(response => {
+            if(response.data == "ss") {
+              alert("虽然你没付钱，但是购买成功了")
+              location.reload();
+            }
+            else {
+              var info = "对不起, 书籍：" + response.data.isbn + "库存不足";
+              alert(info);
+              location.reload();
+            }
+          })
       }
     },
     mounted() {

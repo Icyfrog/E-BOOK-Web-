@@ -3,17 +3,9 @@ package yqc.ebook.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import yqc.ebook.entity.Book;
-import yqc.ebook.entity.BookOrder;
-import yqc.ebook.entity.Tmpcart;
-import yqc.ebook.entity.User;
-import yqc.ebook.service.BookService;
-import yqc.ebook.service.OrderService;
-import yqc.ebook.service.TmpcartService;
-import yqc.ebook.service.UserService;
+import yqc.ebook.entity.*;
+import yqc.ebook.service.*;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +25,8 @@ public class OrderController {
     TmpcartService tmpcartService;
     @Autowired
     BookService bookService;
+    @Autowired
+    OrderitemService orderitemService;
 
     @GetMapping(path = "/all")
 
@@ -40,8 +34,13 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @GetMapping(path = "/some")
+    @GetMapping(path = "/items")
+    public @ResponseBody Iterable<Orderitem> getItems(Integer oid) {
+        System.out.println(oid);
+        return orderitemService.findAllByOid(oid);
+    }
 
+    @GetMapping(path = "/some")
     public @ResponseBody Iterable<BookOrder> getSomeOrder(String email) {
         return orderService.findAllByUserEmail(email);
     }
@@ -60,6 +59,8 @@ public class OrderController {
         String email = tmpcartList.get(0).getOrderuseremail();
         bookOrder.setUserEmail(email);
         orderService.save(bookOrder);
+        Integer oid = bookOrder.getId();
+        System.out.println("OrderID 是 ： "+ oid);
         HashMap<String,String> map = new HashMap<>();
         for (Tmpcart tmp: tmpcartList) {
             Book book = bookService.findByIsbn(tmp.getBookisbn());
@@ -70,9 +71,13 @@ public class OrderController {
                 map.put("isbn",isbn);
                 return JSON.toJSONString(map);
             }
-            inventory = inventory - 1;      // ******
-                                            // 到底要怎么才能实现更改一本书的信息
-                                            // 然后存入数据库啊
+            tmpcartService.delete(tmp);
+            book.setInventory(inventory - 1);
+            bookService.save(book);
+            Orderitem orderitem = new Orderitem();
+            orderitem.setBookid(book.getId());
+            orderitem.setOrderId(oid);
+            orderitemService.save(orderitem);
         }
         return "ss";
     }

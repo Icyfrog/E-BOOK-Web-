@@ -11,4 +11,6 @@ public interface TmpcartService {
     Iterable<Tmpcart> findAll(String email, Integer can, Integer paid);
 
     Void save(Tmpcart tmp);
+
+    void delete(Tmpcart tmp);
 }
