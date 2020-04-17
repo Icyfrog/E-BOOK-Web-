@@ -11,7 +11,7 @@ import yqc.ebook.service.TmpcartService;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:9999")
-@Controller
+@RestController
 public class CartController {
     @Autowired
     private TmpcartService tmpcartService;

@@ -14,7 +14,7 @@ import yqc.ebook.entity.BookComment;
 import yqc.ebook.service.BookService;
 
 @CrossOrigin(origins = "http://localhost:9999")
-@Controller
+@RestController
 @RequestMapping(path="/book")
 public class BookController {
 

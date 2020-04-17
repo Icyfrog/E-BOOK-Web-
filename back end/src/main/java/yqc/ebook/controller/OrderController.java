@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:9999")
-@Controller
+@RestController
 @RequestMapping(path="/order")
 public class OrderController {
 
