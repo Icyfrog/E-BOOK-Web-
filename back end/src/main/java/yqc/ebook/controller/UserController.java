@@ -8,10 +8,14 @@ import yqc.ebook.repository.UserRepository;
 import yqc.ebook.service.BookService;
 import yqc.ebook.service.UserService;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @CrossOrigin(origins = "http://localhost:9999")
 @Controller
 @RequestMapping(path="/user")
 public class UserController {
+
+    private AtomicInteger c = new AtomicInteger(0);
 
     @Autowired
     private UserService userService;
@@ -34,6 +38,7 @@ public class UserController {
     public String logIn(String email, String pwd) {
         System.out.println(email);   //测试是否传入了参数
         System.out.println(pwd);   //测试是否传入了参数
+        System.out.println("We got a new visitor! Total number is :" + c.incrementAndGet());
         return userService.login(email,pwd);
     }
 
@@ -74,12 +79,11 @@ public class UserController {
         String email = "test";
         System.out.println(email);
         User lock_user = userService.findByEmail(email);
-        if (lock_user == null) {return true;}
-        else {
+        if (lock_user != null) {
             lock_user.setActive(1);
             userService.save(lock_user);
-            return true;
         }
+        return true;
     }
 
     @GetMapping(path="/allLock")        // 查找所有被封禁的用户

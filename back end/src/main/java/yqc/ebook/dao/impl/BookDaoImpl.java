@@ -1,5 +1,6 @@
 package yqc.ebook.dao.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import yqc.ebook.dao.BookDao;
@@ -7,6 +8,7 @@ import yqc.ebook.entity.Book;
 import yqc.ebook.entity.BookComment;
 import yqc.ebook.repository.BookCommentRepository;
 import yqc.ebook.repository.BookRepository;
+import yqc.ebook.util.RedisUtil;
 
 @Repository
 public class BookDaoImpl implements BookDao {
@@ -15,9 +17,21 @@ public class BookDaoImpl implements BookDao {
     @Autowired
     private BookCommentRepository bookCommentRepository;
 
+    @Autowired
+    RedisUtil redisUtil;
+
     @Override
     public Book findOne(Integer id) {
-        return bookRepository.getOne(id);
+        Book book = null;
+        Object p = redisUtil.get("book" + id);
+        if (p == null) {
+            book = bookRepository.getOne(id);
+        }
+        else {
+            book = JSONArray.parseObject(p.toString(), Book.class);
+        }
+        return book;
+        //return bookRepository.getOne(id);
     }
 
     @Override
