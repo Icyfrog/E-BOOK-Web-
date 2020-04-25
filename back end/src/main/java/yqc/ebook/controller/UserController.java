@@ -9,7 +9,7 @@ import yqc.ebook.service.BookService;
 import yqc.ebook.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:9999")
-@Controller
+@RestController
 @RequestMapping(path="/user")
 public class UserController {
 
