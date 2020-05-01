@@ -33,4 +33,10 @@ public class UserServiceImpl implements UserService {
         //if (user == null) { return "wrongemail";}
         else {return JSON.toJSONString(user);}
     }
+
+    @Override
+    public void addFrineds(Integer uid1, Integer uid2) {
+        User user1 = userDao.findOne(uid1);
+        user1.beFriendsWith(userDao.findOne(uid2));
+    }
 }

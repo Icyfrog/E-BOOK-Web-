@@ -1,8 +1,14 @@
 package yqc.ebook.entity;
 
-import javax.persistence.*;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
-@Entity
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+//@Entity
+@NodeEntity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +23,16 @@ public class User {
     private Integer active;
     @Column
     private Integer ad;
+
+    @Relationship(type = "FRIEND", direction = Relationship.UNDIRECTED)
+    public Set<User> friends;
+
+    public void beFriendsWith(User person) {
+        if (friends == null) {
+            friends = new HashSet<>();
+        }
+        friends.add(person);
+    }
 
     public User(){
         super();

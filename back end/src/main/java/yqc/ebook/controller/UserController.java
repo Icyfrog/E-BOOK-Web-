@@ -86,4 +86,9 @@ public class UserController {
     public @ResponseBody Iterable<User> getAllLockedUsers() {
         return userService.findAllByActive(0);
     }
+
+    @PostMapping(path = "/addFriends")
+    public void addFriends(Integer uid1, Integer uid2) {
+        userService.addFrineds(uid1, uid2);
+    }
 }

@@ -13,4 +13,6 @@ public interface UserService {
     Iterable<User> findAllByActive(Integer act);
 
     String login(String email, String pwd);
+
+    void addFrineds(Integer uid1, Integer uid2);
 }
