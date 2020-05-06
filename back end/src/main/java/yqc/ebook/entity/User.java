@@ -27,6 +27,10 @@ public class User {
     @Relationship(type = "FRIEND", direction = Relationship.UNDIRECTED)
     public Set<User> friends;
 
+    public Set<User> getFriends() {
+        return this.friends;
+    }
+
     public void beFriendsWith(User person) {
         if (friends == null) {
             friends = new HashSet<>();
