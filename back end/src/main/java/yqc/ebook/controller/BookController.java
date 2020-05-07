@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import yqc.ebook.entity.Book;
 import yqc.ebook.entity.BookComment;
 import yqc.ebook.service.BookService;
+import yqc.ebook.log.LogService;
 
 @CrossOrigin(origins = "http://localhost:9999")
 @RestController
