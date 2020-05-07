@@ -1,5 +1,6 @@
 package yqc.ebook.log;
 
+import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
@@ -36,6 +37,7 @@ public class LogDao {
             Connection connection = ConnectionFactory.createConnection(conf);
             HBaseAdmin admin = (HBaseAdmin) connection.getAdmin();
 
+            Logger log = null;
             if(isExist(tableName)){
                 log.info("Table {} already exists", tableName);
             }else{
@@ -57,6 +59,7 @@ public class LogDao {
             Connection connection = ConnectionFactory.createConnection(conf);
             HBaseAdmin admin = (HBaseAdmin) connection.getAdmin();
 
+            Logger log = null;
             if (!isExist(tableName)) {
                 log.info("Delete failed. Table {} does not exists", tableName);
             } else {
@@ -74,7 +77,7 @@ public class LogDao {
         try {
             Connection connection = ConnectionFactory.createConnection(conf);
             Table t = connection.getTable(TableName.valueOf(tableName));
-
+            Logger log = null;
             if (!isExist(tableName)) {
                 log.info("Delete failed. Table {} does not exists", tableName);
             } else {
@@ -96,6 +99,7 @@ public class LogDao {
         try {
             Connection connection = ConnectionFactory.createConnection(conf);
             Table t = connection.getTable(TableName.valueOf(tableName));
+            Logger log = null;
             if (!isExist(tableName)) {
                 log.info("Add row failed. Table {} does not exist", tableName);
             } else {
